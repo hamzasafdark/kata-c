@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void main() {
+int main() {
 	char response;
 	bool proceed = true; 
 	int index = 0;
@@ -14,33 +14,35 @@ void main() {
 	scanf("%d", &currentScore);
 	scores[index] = currentScore;
 
-	printf("Would you like to continue? Y/N ");
-	response = getchar();
-	printf("%c", putchar(response));
-
 	while(proceed) {
-		if (&response == "Y") {
+	printf("Would you like to continue? Y/N ");
+	getchar();
+	response = getchar();
+	
+	if (response == 'Y' || response == 'y') {
+		if (index < 9) {
+
 			printf("Enter a test score: \n");
 			scanf("%d", &currentScore);
 			index += 1;
 			scores[index] = currentScore;
 			
-			printf("Would you like to continue? Y/N ");
-			getchar();
-			response = getchar();
-			continue;
-		} else if (&response == "N") {
+		} else {
+			printf("Maximum test score coutn reached!\n");
+			break;
+		}
+
+	} else if (response == 'N' || response == 'n') {
 			proceed = false;
-			int length = sizeof(scores) / sizeof(scores[0]);
+			int length = index + 1;
 
 			for( int i = 0; i < length; i++) {
 				sum += scores[i];
 			}
 			
-			avg = sum / length;
+			avg = (double) sum / length;
 
-			printf("%.2f is the average", avg);
-			break;
+			printf("%.2f is the average\n", avg);
 		}
 	} 
 
