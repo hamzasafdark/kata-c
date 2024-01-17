@@ -2,7 +2,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-struct addrinfo {
+struct addrinfo
+{
 	int ai_flags;
 	int ai_family;
 	int ai_socktype;
@@ -14,11 +15,25 @@ struct addrinfo {
 	strucut addrinfo *ai_next;
 };
 
-struct sockaddr {
+struct sockaddr
+{
 	unsigned short sa_family;
 	char sa_data[14];
 };
 
-int main() {
+struct sockaddr_in
+{
+	short int sin_family;
+	unsigned short int sin_port;
+	struct in_addr sin_addr;
+	unsigned char sin_zero[8];
+};
 
+struct in_addr
+{
+	uint32_t s_addr;
+};
+
+int main()
+{
 }
